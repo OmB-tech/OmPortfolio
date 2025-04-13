@@ -104,7 +104,7 @@ export default function HeroSection() {
         </div>
 
         <h1 id="hero-heading" className="text-5xl md:text-7xl font-bold mb-6 font-pirate tracking-wide">
-          <span className="bg-white">
+          <span className="text-white">
             Om Borle
           </span>
         </h1>
