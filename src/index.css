@@ -1,0 +1,189 @@
+@import "tailwindcss";
+
+@font-face {
+  font-family: "PirateFont";
+  src: url("/fonts/pirate-font.woff2") format("woff2");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+:root {
+  --navy-900: #0a192f;
+  --navy-800: #112240;
+  --gold-500: #e6c07b;
+  --gold-300: #ffd700;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: "Inter", sans-serif;
+  background-color: var(--navy-900);
+  color: #ffffff;
+}
+
+.font-pirate {
+  font-family: "PirateFont", serif;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    transform: scale(0);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideRight {
+  from {
+    transform: translateX(-20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+.animate-fade-in {
+  opacity: 1 !important;
+}
+
+.animate-scale-in {
+  transform: scale(1) !important;
+  opacity: 1 !important;
+}
+
+.animate-slide-up {
+  transform: translateY(0) !important;
+  opacity: 1 !important;
+}
+
+.animate-slide-right {
+  transform: translateX(0) !important;
+  opacity: 1 !important;
+}
+
+/* Typing animation */
+.typing-text {
+  display: inline-block;
+  overflow: hidden;
+  border-right: 0.15em solid var(--gold-300);
+  white-space: nowrap;
+  margin: 0 auto;
+  letter-spacing: 0.15em;
+  animation: typing 3.5s steps(40, end), blink-caret 0.75s step-end infinite;
+}
+
+@keyframes typing {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
+}
+
+@keyframes blink-caret {
+  from,
+  to {
+    border-color: transparent;
+  }
+  50% {
+    border-color: var(--gold-300);
+  }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--navy-900);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--gold-500);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--gold-300);
+}
+
+/* Tailwind custom colors */
+.bg-navy-900 {
+  background-color: var(--navy-900);
+}
+
+.bg-navy-800 {
+  background-color: var(--navy-800);
+}
+
+.text-gold-500 {
+  color: var(--gold-500);
+}
+
+.text-gold-300 {
+  color: var(--gold-300);
+}
+
+.text-gold-100 {
+  color: #fff8e1;
+}
+
+.border-gold-500 {
+  border-color: var(--gold-500);
+}
+
+.from-gold-300 {
+  --tw-gradient-from: var(--gold-300);
+}
+
+.to-gold-500 {
+  --tw-gradient-to: var(--gold-500);
+}
+
+.bg-gold-500 {
+  background-color: var(--gold-500);
+}
+
+.hover\:bg-gold-500\/10:hover {
+  background-color: rgba(230, 192, 123, 0.1);
+}
+
+.hover\:text-gold-300:hover {
+  color: var(--gold-300);
+}
+
+.hover\:text-gold-100:hover {
+  color: #fff8e1;
+}
