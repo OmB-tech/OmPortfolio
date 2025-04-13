@@ -76,7 +76,7 @@ export default function ProjectsSection() {
               description="The Gamified Educational Platform makes learning fun and engaging for underprivileged children through interactive games and quizzes. It enhances knowledge retention, boosts motivation, and provides a playful environment to develop essential skills in a user-friendly, game-based learning format."
               tags={["React", "Firebase"]}
               image="https://cdn-icons-png.flaticon.com/512/6570/6570640.png"
-              github="https://github.com/OmB-tech/"
+              github="https://github.com/VaradPatel13/GamifiedEdu"
             />
           </div>
 
@@ -86,7 +86,7 @@ export default function ProjectsSection() {
               description="Akatsuki Project Hub is a centralized platform for managing, showcasing, and collaborating on student projects. It enables users to upload, explore, and contribute to diverse academic and creative works, fostering innovation, teamwork, and knowledge sharing among peers."
               tags={["React JS", "Typescript", "Tailwind CSS"]}
               image="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRWQWdCWJwrxKHS4WeSyVXEKGVDiW-s0gvAKg&s"
-              github="https://github.com/OmB-tech/"
+              github="https://github.com/OmB-tech/ReactProject"
             />
           </div>
         </div>

@@ -11,7 +11,7 @@ export default function Footer() {
 
           <div className="flex space-x-4">
             <a
-              href="https://github.com/omborle"
+              href="https://github.com/OmB-tech"
               target="_blank"
               rel="noopener noreferrer"
               className="text-gold-300 hover:text-gold-500 transition-colors"
@@ -20,7 +20,7 @@ export default function Footer() {
               <span className="sr-only">GitHub</span>
             </a>
             <a
-              href="https://linkedin.com/in/omborle"
+              href="linkedin.com/in/om-borle-25a9b328a"
               target="_blank"
               rel="noopener noreferrer"
               className="text-gold-300 hover:text-gold-500 transition-colors"
@@ -28,16 +28,8 @@ export default function Footer() {
               <Linkedin className="h-5 w-5" />
               <span className="sr-only">LinkedIn</span>
             </a>
-            <a
-              href="https://twitter.com/omborle"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-gold-300 hover:text-gold-500 transition-colors"
-            >
-              <Twitter className="h-5 w-5" />
-              <span className="sr-only">Twitter</span>
-            </a>
-            <a href="mailto:om.borle@example.com" className="text-gold-300 hover:text-gold-500 transition-colors">
+            
+            <a href="mailto:omborle14@gmail.com" className="text-gold-300 hover:text-gold-500 transition-colors">
               <Mail className="h-5 w-5" />
               <span className="sr-only">Email</span>
             </a>

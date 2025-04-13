@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useEffect, useRef } from "react"
+import { useState, useEffect, useRef, useMemo } from "react"
 
 const TerminalAbout: React.FC<{ name: string }> = ({ name }) => {
   const [displayText, setDisplayText] = useState<string>("")
@@ -11,12 +11,13 @@ const TerminalAbout: React.FC<{ name: string }> = ({ name }) => {
   const currentTextRef = useRef<string>("")
   const timeoutRef = useRef<NodeJS.Timeout | null>(null)
 
-  const lines: string[] = [
-    `Hello, I'm ${name}.`, 
-    "Computer Engineering Student.", 
-    "Frontend Developer.", 
+  // Stable lines array
+  const lines = useMemo(() => [
+    `Hello, I'm ${name}.`,
+    "Computer Engineering Student.",
+    "Frontend Developer.",
     "Problem Solver."
-  ]
+  ], [name])
 
   // Cursor blinking effect
   useEffect(() => {
@@ -79,3 +80,4 @@ const TerminalAbout: React.FC<{ name: string }> = ({ name }) => {
 }
 
 export default TerminalAbout
+  

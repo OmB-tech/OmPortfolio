@@ -1,36 +1,89 @@
 "use client"
 
-import { useEffect, useRef } from "react"
+import { useEffect, useRef, useState } from "react"
 import { Terminal } from "lucide-react"
 import TerminalAbout from "./TerminalAbout"
 import SocialLinks from "./SocialLinks"
 
 export default function AboutSection() {
-  const sectionRef = useRef(null)
+  const sectionRef = useRef<HTMLElement | null>(null)
 
+  // Typewriter effect state
+  const titles = [
+    "Computer Engineering Student",
+    "Frontend Developer",
+    "Problem Solver",
+    "Tech Enthusiast",
+  ]
+  const [currentText, setCurrentText] = useState("")
+  const [index, setIndex] = useState(0)
+  const [charIndex, setCharIndex] = useState(0)
+  const [isDeleting, setIsDeleting] = useState(false)
+
+  // Cursor state
+  const [cursorVisible, setCursorVisible] = useState(true)
+
+  // Animate section fade-in
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add("animate-fade-in")
+        if (entry.isIntersecting && entry.target instanceof HTMLElement) {
+          entry.target.classList.add("fade-in")
+          entry.target.classList.remove("opacity-0")
         }
       },
-      { threshold: 0.1 },
+      { threshold: 0.1 }
     )
 
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current)
-    }
+    const current = sectionRef.current
+    if (current) observer.observe(current)
 
     return () => {
-      if (sectionRef.current) {
-        observer.unobserve(sectionRef.current)
-      }
+      if (current) observer.unobserve(current)
     }
   }, [])
 
+  // Cursor blinking effect
+  useEffect(() => {
+    const blink = setInterval(() => {
+      setCursorVisible((prev) => !prev)
+    }, 500)
+    return () => clearInterval(blink)
+  }, [])
+
+  // Typewriter effect logic
+  useEffect(() => {
+    const currentTitle = titles[index]
+    let timeout: NodeJS.Timeout
+
+    if (!isDeleting) {
+      if (charIndex < currentTitle.length) {
+        setCurrentText((prev) => prev + currentTitle.charAt(charIndex))
+        setCharIndex((prev) => prev + 1)
+        timeout = setTimeout(() => {}, 100)
+      } else {
+        timeout = setTimeout(() => setIsDeleting(true), 1500)
+      }
+    } else {
+      if (charIndex > 0) {
+        setCurrentText((prev) => prev.slice(0, -1))
+        setCharIndex((prev) => prev - 1)
+        timeout = setTimeout(() => {}, 50)
+      } else {
+        setIsDeleting(false)
+        setIndex((prev) => (prev + 1) % titles.length)
+      }
+    }
+
+    return () => clearTimeout(timeout)
+  }, [charIndex, isDeleting, index, titles])
+
   return (
-    <section ref={sectionRef} id="about" className="py-20 px-4 bg-navy-800 opacity-0 transition-opacity duration-1000 ">
+    <section
+      ref={sectionRef}
+      id="about"
+      className="py-20 px-4 bg-navy-800 opacity-0 transition-opacity duration-1000"
+    >
       <div className="max-w-5xl mx-auto">
         <div className="flex flex-col md:flex-row gap-12 items-center">
           <div className="w-full md:w-1/2">
@@ -40,11 +93,14 @@ export default function AboutSection() {
                 About My Journey
               </span>
             </h2>
+
+
             <TerminalAbout name="Om Sanjay Borle" />
           </div>
+
           <div className="w-full md:w-1/2 space-y-6">
             <div className="relative">
-              <div className="absolute -inset-1 bg-gradient-to-r from-gold-500 to-red-500 rounded-lg blur opacity-25"></div>
+              <div className="absolute -inset-1 bg-gradient-to-r from-gold-500 to-red-500 rounded-lg blur opacity-25" />
               <div className="relative bg-navy-900 p-6 rounded-lg border border-gold-500/20">
                 <p className="text-gold-100 leading-relaxed">
                   I'm a passionate computer engineering student with a focus on web development and problem solving.
@@ -66,7 +122,6 @@ export default function AboutSection() {
           </div>
         </div>
       </div>
-
     </section>
   )
 }

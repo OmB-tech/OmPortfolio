@@ -1,6 +1,6 @@
 "use client"
 
-import { useEffect, useRef } from "react"
+import { useEffect, useRef, useState } from "react"
 import { Button } from "./ui/Button"
 import MyPic from "../assets/MyPic.jpeg"
 import type { MouseEvent } from "react"
@@ -15,29 +15,55 @@ export default function HeroSection() {
   const heroRef = useRef<HTMLDivElement>(null)
   const animationFrameId = useRef<number>(0)
 
+  // Typewriter effect setup
+  const phrases = [
+    "Computer Engineering Student",
+    "Frontend Developer",
+    "Problem Solving"
+  ]
+  const [currentText, setCurrentText] = useState("")
+  const [phraseIndex, setPhraseIndex] = useState(0)
+  const [charIndex, setCharIndex] = useState(0)
+  const [isDeleting, setIsDeleting] = useState(false)
+
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      const fullText = phrases[phraseIndex]
+      if (isDeleting) {
+        setCurrentText(fullText.substring(0, charIndex - 1))
+        setCharIndex((prev) => prev - 1)
+      } else {
+        setCurrentText(fullText.substring(0, charIndex + 1))
+        setCharIndex((prev) => prev + 1)
+      }
+
+      // Transition between typing and deleting
+      if (!isDeleting && charIndex === fullText.length) {
+        setTimeout(() => setIsDeleting(true), 1000)
+      } else if (isDeleting && charIndex === 0) {
+        setIsDeleting(false)
+        setPhraseIndex((prev) => (prev + 1) % phrases.length)
+      }
+    }, isDeleting ? 50 : 100)
+
+    return () => clearTimeout(timeout)
+  }, [charIndex, isDeleting, phraseIndex])
 
   useEffect(() => {
     const handleMouseMove = (e: globalThis.MouseEvent) => {
       if (!heroRef.current) return
 
-      // Use requestAnimationFrame for smoother performance
       animationFrameId.current = requestAnimationFrame(() => {
         const { clientX, clientY } = e
         const { innerWidth, innerHeight } = window
 
-        // Calculate normalized mouse position (-0.5 to 0.5)
         const xNorm = (clientX / innerWidth) - 0.5
         const yNorm = (clientY / innerHeight) - 0.5
 
-        // Apply parallax effect with optimized query selection
         const elements = heroRef.current?.querySelectorAll<ParallaxElement>(".parallax-element") ?? []
-
         elements.forEach((el) => {
           const speed = Number(el.dataset.speed) || 0
-          el.style.transform = `translate(
-            ${xNorm * speed}px, 
-            ${yNorm * speed}px
-          )`
+          el.style.transform = `translate(${xNorm * speed}px, ${yNorm * speed}px)`
         })
       })
     }
@@ -54,10 +80,7 @@ export default function HeroSection() {
 
   const handleScroll = () => {
     const aboutSection = document.getElementById("about")
-    aboutSection?.scrollIntoView({
-      behavior: "smooth",
-      block: "start"
-    })
+    aboutSection?.scrollIntoView({ behavior: "smooth", block: "start" })
   }
 
   return (
@@ -97,20 +120,20 @@ export default function HeroSection() {
                 width={192}
                 height={192}
                 loading="eager"
-                decoding="async" // Add for performance
+                decoding="async"
               />
             </div>
           </div>
         </div>
 
         <h1 id="hero-heading" className="text-5xl md:text-7xl font-bold mb-6 font-pirate tracking-wide">
-          <span className="text-white">
-            Om Borle
-          </span>
+          <span className="text-white">Om Sanjay Borle</span>
         </h1>
 
-        <p className="text-xl md:text-2xl text-gold-100 mb-8 max-w-2xl mx-auto">
-          Computer Engineer & Frontend Developer
+        {/* 👉 Typewriter Line */}
+        <p className="text-xl md:text-2xl text-gold-100 mb-8 max-w-2xl mx-auto font-mono min-h-[2.5rem]">
+          {currentText}
+          <span className="animate-pulse">|</span>
         </p>
 
         <div className="flex flex-wrap justify-center gap-4">
@@ -133,7 +156,6 @@ export default function HeroSection() {
           >
             Get In Touch
           </Button>
-
         </div>
       </div>
     </section>
