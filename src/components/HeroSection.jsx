@@ -64,7 +64,7 @@ export default function HeroSection() {
         </div>
 
         <h1 id="hero-heading" className="text-5xl md:text-7xl font-bold mb-6 font-pirate tracking-wide">
-          <span className="bg-clip-text text-transparent bg-gradient-to-r from-gold-300 via-gold-500 to-gold-300">
+          <span className="bg-white">
             Om Sanjay Borle
           </span>
         </h1>
