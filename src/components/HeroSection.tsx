@@ -127,11 +127,11 @@ export default function HeroSection() {
         </div>
 
         <h1 id="hero-heading" className="text-5xl md:text-7xl font-bold mb-6 font-pirate tracking-wide">
-          <span className="text-white">Om Sanjay Borle</span>
+          <span className="text-white text-6xl">Om Sanjay Borle</span>
         </h1>
 
         {/* 👉 Typewriter Line */}
-        <p className="text-xl md:text-2xl text-gold-100 mb-8 max-w-2xl mx-auto font-mono min-h-[2.5rem]">
+        <p className="text-2xl md:text-2xl text-gold-100 mb-8 max-w-2xl mx-auto font-mono min-h-[2.5rem]">
           {currentText}
           <span className="animate-pulse">|</span>
         </p>

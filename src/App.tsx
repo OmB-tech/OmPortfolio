@@ -4,7 +4,7 @@ import ProjectsPage from "./pages/ProjectsPage";
 import ProjectDetailPage from "./pages/ProjectDetailPage";
 import Layout from "./components/Layout";
 import type { ReactElement } from 'react';
-
+import './App.css';
 // Type for route parameters
 type AppRouteParams = {
   slug: string;

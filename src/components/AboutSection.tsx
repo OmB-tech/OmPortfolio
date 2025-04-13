@@ -89,7 +89,7 @@ export default function AboutSection() {
           <div className="w-full md:w-1/2">
             <h2 className="text-3xl font-bold mb-6 flex items-center font-pirate">
               <Terminal className="mr-3 text-gold-500" />
-              <span className="text-4xl text-transparent bg-clip-text bg-gradient-to-r from-amber-300 to-amber-500">
+              <span className="text-5xl  text-transparent bg-clip-text bg-gradient-to-r from-amber-300 to-amber-500">
                 About My Journey
               </span>
             </h2>
